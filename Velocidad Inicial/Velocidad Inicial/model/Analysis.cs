@@ -56,30 +56,23 @@ namespace Velocidad_Inicial.model
         {
             double sum = 0;
             int size = registers.Count;
-            switch (c)
+            foreach (Register r in registers)
             {
-                case TIME:
-                    foreach (Register r in registers)
-                    {
+                switch (c)
+                {
+                    case TIME:
                         sum += r.Time;
-                    }
-                    break;
+                        break;
 
-                case ANGLE:
-                    foreach (Register r in registers)
-                    {
+                    case ANGLE:
                         sum += r.Angle;
-                    }
-                    break;
+                        break;
 
-                case DISTANCE:
-                    foreach (Register r in registers)
-                    {
+                    case DISTANCE:
                         sum += r.Distance;
-                    }
-                    break;
+                        break;
+                }
             }
-
             return sum / size;
         }
 
