@@ -9,9 +9,9 @@ namespace Velocidad_Inicial.model
 {
     class Analysis
     {
-        public int TIME = 1;
-        public int ANGLE = 2;
-        public int DISTANCE = 3;
+        public const int TIME = 1;
+        public const int ANGLE = 2;
+        public const int DISTANCE = 3;
         public List<Register> registers;
 
         public Analysis()
@@ -45,21 +45,21 @@ namespace Velocidad_Inicial.model
             int size = registers.Count;
             switch (c)
             {
-                case 1:
+                case TIME:
                     foreach(Register r in registers)
                     {
                         sum += r.Time;
                     }
                     break;
                     
-                case 2:
+                case ANGLE:
                     foreach (Register r in registers)
                     {
                         sum += r.Angle;
                     }
                     break;
                     
-                case 3:
+                case DISTANCE:
                     foreach (Register r in registers)
                     {
                         sum += r.Distance;
