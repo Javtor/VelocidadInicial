@@ -98,7 +98,7 @@ namespace Velocidad_Inicial.model
                         break;
                 }
             }
-            return sum / size;
+            return Math.Sqrt(sum / (size-1));
         }
 
         public void AddRegister(double time, double angle, double distance)
