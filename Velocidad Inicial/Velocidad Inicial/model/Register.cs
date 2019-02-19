@@ -9,11 +9,11 @@ namespace Velocidad_Inicial.model
     class Register
     {
         public double GRAVITY = 9.8;
-        private double Time { get; set; }
-        private double Angle { get; set; }
-        private double Distance { get; set; }
-        private double Vo1 { get; set; }
-        private double Vo2 { get; set; }
+        public double Time { get; set; }
+        public double Angle { get; set; }
+        public double Distance { get; set; }
+        public double Vo1 { get; set; }
+        public double Vo2 { get; set; }
 
         public Register(int time, int angle, int distance)
         {
@@ -24,14 +24,18 @@ namespace Velocidad_Inicial.model
 
         public double CalculateVo1()
         {
-            return -1;
+            return GRAVITY * Time / (2 * Math.Sin(Angle));
         }
 
         public double CalculateVo2()
         {
-            return -1;
+            return Math.Sqrt(GRAVITY * Distance / Math.Sin(2 * Angle)); ;
         }
 
+        public double CalculateUncertainty()
+        {
+            return -1;
+        }
 
 
     }
