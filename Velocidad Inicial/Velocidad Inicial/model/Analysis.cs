@@ -35,7 +35,7 @@ namespace Velocidad_Inicial.model
             double angle = CalculateAverage(ANGLE);
             angle = ConvertDegreesToRadians(angle);
             double vel = 0;
-            switch(method)
+            switch (method)
             {
                 case METHOD_1:
                     vel = Register.GRAVITY * time / (2 * Math.Sin(angle));
@@ -47,9 +47,25 @@ namespace Velocidad_Inicial.model
             return vel;
         }
 
-        public double CalculateAverageUncertainty()
+        public double CalculateAverageUncertainty(int method)
         {
-            return -1;
+            double g = Register.GRAVITY;
+            double distance = CalculateAverage(DISTANCE);
+            double time = CalculateAverage(TIME);
+            double angle = CalculateAverage(ANGLE);
+            angle = ConvertDegreesToRadians(angle);
+            double uncertainty = 0;
+            switch (method)
+            {
+                case METHOD_1:
+                    uncertainty = (g / (2 * Math.Sin(angle))) * CalculateDeviation(TIME)
+                        + (-(g * time * Math.Cos(angle)) / (2 * Math.Pow(Math.Sin(2 * angle), 2))) * CalculateDeviation(ANGLE);
+                    break;
+                case METHOD_2:
+                    vel = Math.Sqrt(Register.GRAVITY * distance / Math.Sin(2 * angle));
+                    break;
+            }
+            return uncertainty;
         }
 
         public double CalculateAverage(int c)
@@ -86,7 +102,7 @@ namespace Velocidad_Inicial.model
                 switch (c)
                 {
                     case TIME:
-                        sum += Math.Pow(r.Time-average, 2);
+                        sum += Math.Pow(r.Time - average, 2);
                         break;
 
                     case ANGLE:
@@ -98,7 +114,7 @@ namespace Velocidad_Inicial.model
                         break;
                 }
             }
-            return Math.Sqrt(sum / (size-1));
+            return Math.Sqrt(sum / (size - 1));
         }
 
         public void AddRegister(double time, double angle, double distance)
