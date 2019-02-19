@@ -12,6 +12,10 @@ namespace Velocidad_Inicial.model
         public const int TIME = 1;
         public const int ANGLE = 2;
         public const int DISTANCE = 3;
+
+        public const int METHOD_1 = 1;
+        public const int METHOD_2 = 2;
+
         public List<Register> registers;
 
         public Analysis()
@@ -24,20 +28,23 @@ namespace Velocidad_Inicial.model
 
         }
 
-        public double AverageVo1()
+        public double AverageVo(int method)
         {
+            double distance = CalculateAverage(DISTANCE);
             double time = CalculateAverage(TIME);
             double angle = CalculateAverage(ANGLE);
             angle = ConvertDegreesToRadians(angle);
-            return Register.GRAVITY * time / (2 * Math.Sin(angle)); ;
-        }
-
-        public double AverageVo2()
-        {
-            double distance = CalculateAverage(DISTANCE);
-            double angle = CalculateAverage(ANGLE);
-            angle = ConvertDegreesToRadians(angle);
-            return Math.Sqrt(Register.GRAVITY * distance / Math.Sin(2 * angle)); ;
+            double vel = 0;
+            switch(method)
+            {
+                case METHOD_1:
+                    vel = Register.GRAVITY * time / (2 * Math.Sin(angle));
+                    break;
+                case METHOD_2:
+                    vel = Math.Sqrt(Register.GRAVITY * distance / Math.Sin(2 * angle));
+                    break;
+            }
+            return vel;
         }
 
         public double CalculateAverageUncertainty()
@@ -47,24 +54,24 @@ namespace Velocidad_Inicial.model
 
         public double CalculateAverage(int c)
         {
-            double sum = 0 ;
+            double sum = 0;
             int size = registers.Count;
             switch (c)
             {
                 case TIME:
-                    foreach(Register r in registers)
+                    foreach (Register r in registers)
                     {
                         sum += r.Time;
                     }
                     break;
-                    
+
                 case ANGLE:
                     foreach (Register r in registers)
                     {
                         sum += r.Angle;
                     }
                     break;
-                    
+
                 case DISTANCE:
                     foreach (Register r in registers)
                     {
@@ -73,7 +80,7 @@ namespace Velocidad_Inicial.model
                     break;
             }
 
-            return sum/size;
+            return sum / size;
         }
 
         public void AddRegister(double time, double angle, double distance)
