@@ -8,14 +8,14 @@ namespace Velocidad_Inicial.model
 {
     class Register
     {
-        public double GRAVITY = 9.8;
+        public const double GRAVITY = 9.8;
         public double Time { get; set; }
         public double Angle { get; set; }
         public double Distance { get; set; }
         public double Vo1 { get; set; }
         public double Vo2 { get; set; }
 
-        public Register(int time, int angle, int distance)
+        public Register(double time, double angle, double distance)
         {
             Time = time;
             Angle = angle;

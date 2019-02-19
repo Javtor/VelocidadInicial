@@ -26,12 +26,18 @@ namespace Velocidad_Inicial.model
 
         public double AverageVo1()
         {
-            return -1;
+            double time = CalculateAverage(TIME);
+            double angle = CalculateAverage(ANGLE);
+            angle = ConvertDegreesToRadians(angle);
+            return Register.GRAVITY * time / (2 * Math.Sin(angle)); ;
         }
 
         public double AverageVo2()
         {
-            return -1;
+            double distance = CalculateAverage(DISTANCE);
+            double angle = CalculateAverage(ANGLE);
+            angle = ConvertDegreesToRadians(angle);
+            return Math.Sqrt(Register.GRAVITY * distance / Math.Sin(2 * angle)); ;
         }
 
         public double CalculateAverageUncertainty()
@@ -70,7 +76,15 @@ namespace Velocidad_Inicial.model
             return sum/size;
         }
 
-        
-        
+        public void AddRegister(double time, double angle, double distance)
+        {
+            registers.Add(new Register(time, angle, distance));
+        }
+
+        public static double ConvertDegreesToRadians(double degrees)
+        {
+            double radians = degrees * Math.PI / 180;
+            return (radians);
+        }
     }
 }
