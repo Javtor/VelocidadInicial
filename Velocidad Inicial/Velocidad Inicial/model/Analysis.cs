@@ -76,6 +76,31 @@ namespace Velocidad_Inicial.model
             return sum / size;
         }
 
+        public double CalculateDeviation(int c)
+        {
+            double average = CalculateAverage(c);
+            double sum = 0;
+            int size = registers.Count;
+            foreach (Register r in registers)
+            {
+                switch (c)
+                {
+                    case TIME:
+                        sum += Math.Pow(r.Time-average, 2);
+                        break;
+
+                    case ANGLE:
+                        sum += Math.Pow(r.Angle - average, 2);
+                        break;
+
+                    case DISTANCE:
+                        sum += Math.Pow(r.Distance - average, 2);
+                        break;
+                }
+            }
+            return sum / size;
+        }
+
         public void AddRegister(double time, double angle, double distance)
         {
             registers.Add(new Register(time, angle, distance));
