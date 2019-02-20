@@ -23,7 +23,7 @@ namespace Velocidad_Inicial.model
             registers = new List<Register>();
         }
 
-        public void ReadCsv()
+        public void ReadCsv(string url)
         {
 
         }
@@ -62,7 +62,8 @@ namespace Velocidad_Inicial.model
                         + (-(g * time * Math.Cos(angle)) / (2 * Math.Pow(Math.Sin(2 * angle), 2))) * CalculateDeviation(ANGLE);
                     break;
                 case METHOD_2:
-                    vel = Math.Sqrt(Register.GRAVITY * distance / Math.Sin(2 * angle));
+                    uncertainty = (1 / 2 * Math.Sqrt(g / (distance * Math.Sin(angle)))) * CalculateDeviation(DISTANCE)
+                        + (-(Math.Sqrt(g * distance) * Math.Cos(2 * angle)) / Math.Sqrt(Math.Pow(Math.Sin(2 * angle), 3))) * CalculateDeviation(ANGLE);
                     break;
             }
             return uncertainty;
