@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Velocidad_Inicial.model;
 
 namespace Velocidad_Inicial
 {
@@ -15,6 +16,7 @@ namespace Velocidad_Inicial
         public Form1()
         {
             InitializeComponent();
+            new Analysis();
         }
     }
 }

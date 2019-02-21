@@ -17,11 +17,16 @@ namespace Velocidad_Inicial.model
         public const int METHOD_1 = 1;
         public const int METHOD_2 = 2;
 
+        public static string REGISTERS_DIRECTORY = System.IO.Path.Combine(Environment.GetFolderPath(
+    Environment.SpecialFolder.MyDoc‌​uments), "Velocidad inicial App");
+        public static string REGISTERS_LOCATION = System.IO.Path.Combine(REGISTERS_DIRECTORY, "registers.csv");
+
         public List<Register> registers;
 
         public Analysis()
         {
             registers = new List<Register>();
+            ClearRegisters();
         }
 
         public void ReadCsv(string url, bool hasHeader)
@@ -56,24 +61,49 @@ namespace Velocidad_Inicial.model
             }
         }
 
-        public static void escritura()
+        public void SaveRegister(Register register)
         {
             try
             {
-
-                StreamWriter sw = new StreamWriter("..\\..\\ejemplo.csv", false);
-                for (int i = 0; i < 15; i++)
+                if (!Directory.Exists(REGISTERS_DIRECTORY))
                 {
-                    for (int j = 0; j < 15; j++)
-                    {
-                        int numb = (i * 15 + j);
-                        sw.Write("pato numero " + numb);
-                        if (j != 14) sw.Write(",");
-                    }
-                    sw.WriteLine();
+                    Directory.CreateDirectory(REGISTERS_DIRECTORY);
                 }
+                StreamWriter sw = new StreamWriter(REGISTERS_LOCATION, true);
+                sw.WriteLine(register.GetCsvString());
 
                 sw.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+        }
+
+        public void DeleteRegister(int index)
+        {
+            registers.RemoveAt(index);
+            ClearRegistersFile();
+            foreach (Register r in registers)
+            {
+                SaveRegister(r);
+            }
+        }
+
+        public void ClearRegisters()
+        {
+            registers.Clear();
+            ClearRegistersFile();
+        }
+
+        private void ClearRegistersFile()
+        {
+            try
+            {
+                if (Directory.Exists(REGISTERS_DIRECTORY))
+                {
+                    File.Delete(REGISTERS_LOCATION);
+                }
             }
             catch (Exception e)
             {
@@ -176,7 +206,7 @@ namespace Velocidad_Inicial.model
             registers.Add(new Register(time, angle, distance));
         }
 
-        public static double ConvertDegreesToRadians(double degrees)
+        private static double ConvertDegreesToRadians(double degrees)
         {
             double radians = degrees * Math.PI / 180;
             return (radians);
