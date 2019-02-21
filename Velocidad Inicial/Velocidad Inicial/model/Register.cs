@@ -37,6 +37,9 @@ namespace Velocidad_Inicial.model
             return -1;
         }
 
-
-    }
+        public string GetCsvString()
+        {
+            return Time + "," + Angle + "," + Distance;
+        }
+    }   
 }

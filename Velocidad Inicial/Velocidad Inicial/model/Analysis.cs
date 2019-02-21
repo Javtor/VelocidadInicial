@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,9 +24,61 @@ namespace Velocidad_Inicial.model
             registers = new List<Register>();
         }
 
-        public void ReadCsv(string url)
+        public void ReadCsv(string url, bool hasHeader)
         {
+            String line;
+            try
+            {
+                StreamReader sr = new StreamReader(url);
 
+                line = "";
+
+                if (hasHeader) sr.ReadLine();
+
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] info = line.Split(',');
+                    double time = Double.Parse(info[0]);
+                    double angle = Double.Parse(info[1]);
+                    double distance = Double.Parse(info[2]);
+                    AddRegister(time, angle, distance);
+                }
+
+                sr.Close();
+            }
+            catch (Exception ex)
+            {
+                if (ex is FormatException || ex is IndexOutOfRangeException)
+                {
+                    throw new FormatException();
+                }
+                Console.WriteLine("Exception: " + ex.Message);
+            }
+        }
+
+        public static void escritura()
+        {
+            try
+            {
+
+                StreamWriter sw = new StreamWriter("..\\..\\ejemplo.csv", false);
+                for (int i = 0; i < 15; i++)
+                {
+                    for (int j = 0; j < 15; j++)
+                    {
+                        int numb = (i * 15 + j);
+                        sw.Write("pato numero " + numb);
+                        if (j != 14) sw.Write(",");
+                    }
+                    sw.WriteLine();
+                }
+
+                sw.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
         }
 
         public double AverageVo(int method)
