@@ -39,6 +39,21 @@
             this.avTimeLabel = new System.Windows.Forms.Label();
             this.avAngLabel = new System.Windows.Forms.Label();
             this.avDistLabel = new System.Windows.Forms.Label();
+            this.Addbt = new System.Windows.Forms.Button();
+            this.Deletebt = new System.Windows.Forms.Button();
+            this.Clearbt = new System.Windows.Forms.Button();
+            this.lbTime = new System.Windows.Forms.Label();
+            this.lbAngle = new System.Windows.Forms.Label();
+            this.lbDistance = new System.Windows.Forms.Label();
+            this.tbTime = new System.Windows.Forms.TextBox();
+            this.tbAngle = new System.Windows.Forms.TextBox();
+            this.tbDistance = new System.Windows.Forms.TextBox();
+            this.lbURL = new System.Windows.Forms.Label();
+            this.tbURL = new System.Windows.Forms.TextBox();
+            this.CBHeader = new System.Windows.Forms.CheckBox();
+            this.btCalc1 = new System.Windows.Forms.Button();
+            this.btCalc2 = new System.Windows.Forms.Button();
+            this.btCalcAll = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // regListView
@@ -73,7 +88,7 @@
             // 
             // csvButton
             // 
-            this.csvButton.Location = new System.Drawing.Point(419, 13);
+            this.csvButton.Location = new System.Drawing.Point(531, 276);
             this.csvButton.Name = "csvButton";
             this.csvButton.Size = new System.Drawing.Size(75, 23);
             this.csvButton.TabIndex = 1;
@@ -136,11 +151,160 @@
             this.avDistLabel.TabIndex = 7;
             this.avDistLabel.Text = "0";
             // 
+            // Addbt
+            // 
+            this.Addbt.Location = new System.Drawing.Point(531, 140);
+            this.Addbt.Name = "Addbt";
+            this.Addbt.Size = new System.Drawing.Size(75, 23);
+            this.Addbt.TabIndex = 8;
+            this.Addbt.Text = "Agregar ";
+            this.Addbt.UseVisualStyleBackColor = true;
+            this.Addbt.Click += new System.EventHandler(this.Addbt_Click);
+            // 
+            // Deletebt
+            // 
+            this.Deletebt.Location = new System.Drawing.Point(647, 140);
+            this.Deletebt.Name = "Deletebt";
+            this.Deletebt.Size = new System.Drawing.Size(75, 23);
+            this.Deletebt.TabIndex = 9;
+            this.Deletebt.Text = "Eliminar";
+            this.Deletebt.UseVisualStyleBackColor = true;
+            this.Deletebt.Click += new System.EventHandler(this.Deletebt_Click);
+            // 
+            // Clearbt
+            // 
+            this.Clearbt.Location = new System.Drawing.Point(645, 276);
+            this.Clearbt.Name = "Clearbt";
+            this.Clearbt.Size = new System.Drawing.Size(75, 23);
+            this.Clearbt.TabIndex = 10;
+            this.Clearbt.Text = "Limpiar Lista";
+            this.Clearbt.UseVisualStyleBackColor = true;
+            this.Clearbt.Click += new System.EventHandler(this.Clearbt_Click);
+            // 
+            // lbTime
+            // 
+            this.lbTime.AutoSize = true;
+            this.lbTime.Location = new System.Drawing.Point(528, 42);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(42, 13);
+            this.lbTime.TabIndex = 11;
+            this.lbTime.Text = "Tiempo";
+            // 
+            // lbAngle
+            // 
+            this.lbAngle.AutoSize = true;
+            this.lbAngle.Location = new System.Drawing.Point(528, 81);
+            this.lbAngle.Name = "lbAngle";
+            this.lbAngle.Size = new System.Drawing.Size(40, 13);
+            this.lbAngle.TabIndex = 12;
+            this.lbAngle.Text = "Angulo";
+            // 
+            // lbDistance
+            // 
+            this.lbDistance.AutoSize = true;
+            this.lbDistance.Location = new System.Drawing.Point(528, 114);
+            this.lbDistance.Name = "lbDistance";
+            this.lbDistance.Size = new System.Drawing.Size(51, 13);
+            this.lbDistance.TabIndex = 13;
+            this.lbDistance.Text = "Distancia";
+            // 
+            // tbTime
+            // 
+            this.tbTime.Location = new System.Drawing.Point(622, 42);
+            this.tbTime.Name = "tbTime";
+            this.tbTime.Size = new System.Drawing.Size(100, 20);
+            this.tbTime.TabIndex = 14;
+            // 
+            // tbAngle
+            // 
+            this.tbAngle.Location = new System.Drawing.Point(622, 74);
+            this.tbAngle.Name = "tbAngle";
+            this.tbAngle.Size = new System.Drawing.Size(100, 20);
+            this.tbAngle.TabIndex = 15;
+            // 
+            // tbDistance
+            // 
+            this.tbDistance.Location = new System.Drawing.Point(622, 107);
+            this.tbDistance.Name = "tbDistance";
+            this.tbDistance.Size = new System.Drawing.Size(100, 20);
+            this.tbDistance.TabIndex = 16;
+            // 
+            // lbURL
+            // 
+            this.lbURL.AutoSize = true;
+            this.lbURL.Location = new System.Drawing.Point(501, 211);
+            this.lbURL.Name = "lbURL";
+            this.lbURL.Size = new System.Drawing.Size(69, 13);
+            this.lbURL.TabIndex = 17;
+            this.lbURL.Text = "Ruta de CSV";
+            // 
+            // tbURL
+            // 
+            this.tbURL.Location = new System.Drawing.Point(592, 208);
+            this.tbURL.Name = "tbURL";
+            this.tbURL.Size = new System.Drawing.Size(164, 20);
+            this.tbURL.TabIndex = 18;
+            // 
+            // CBHeader
+            // 
+            this.CBHeader.AutoSize = true;
+            this.CBHeader.Location = new System.Drawing.Point(612, 244);
+            this.CBHeader.Name = "CBHeader";
+            this.CBHeader.Size = new System.Drawing.Size(108, 17);
+            this.CBHeader.TabIndex = 19;
+            this.CBHeader.Text = "Con Encabezado";
+            this.CBHeader.UseVisualStyleBackColor = true;
+            // 
+            // btCalc1
+            // 
+            this.btCalc1.Location = new System.Drawing.Point(478, 370);
+            this.btCalc1.Name = "btCalc1";
+            this.btCalc1.Size = new System.Drawing.Size(75, 23);
+            this.btCalc1.TabIndex = 20;
+            this.btCalc1.Text = "Calcular V1";
+            this.btCalc1.UseVisualStyleBackColor = true;
+            this.btCalc1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // btCalc2
+            // 
+            this.btCalc2.Location = new System.Drawing.Point(559, 370);
+            this.btCalc2.Name = "btCalc2";
+            this.btCalc2.Size = new System.Drawing.Size(75, 23);
+            this.btCalc2.TabIndex = 21;
+            this.btCalc2.Text = "Calcular V2";
+            this.btCalc2.UseVisualStyleBackColor = true;
+            this.btCalc2.Click += new System.EventHandler(this.btCalc2_Click);
+            // 
+            // btCalcAll
+            // 
+            this.btCalcAll.Location = new System.Drawing.Point(649, 370);
+            this.btCalcAll.Name = "btCalcAll";
+            this.btCalcAll.Size = new System.Drawing.Size(91, 23);
+            this.btCalcAll.TabIndex = 22;
+            this.btCalcAll.Text = "Calcular Ambas";
+            this.btCalcAll.UseVisualStyleBackColor = true;
+            this.btCalcAll.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btCalcAll);
+            this.Controls.Add(this.btCalc2);
+            this.Controls.Add(this.btCalc1);
+            this.Controls.Add(this.CBHeader);
+            this.Controls.Add(this.tbURL);
+            this.Controls.Add(this.lbURL);
+            this.Controls.Add(this.tbDistance);
+            this.Controls.Add(this.tbAngle);
+            this.Controls.Add(this.tbTime);
+            this.Controls.Add(this.lbDistance);
+            this.Controls.Add(this.lbAngle);
+            this.Controls.Add(this.lbTime);
+            this.Controls.Add(this.Clearbt);
+            this.Controls.Add(this.Deletebt);
+            this.Controls.Add(this.Addbt);
             this.Controls.Add(this.avDistLabel);
             this.Controls.Add(this.avAngLabel);
             this.Controls.Add(this.avTimeLabel);
@@ -169,6 +333,21 @@
         private System.Windows.Forms.Label avTimeLabel;
         private System.Windows.Forms.Label avAngLabel;
         private System.Windows.Forms.Label avDistLabel;
+        private System.Windows.Forms.Button Addbt;
+        private System.Windows.Forms.Button Deletebt;
+        private System.Windows.Forms.Button Clearbt;
+        private System.Windows.Forms.Label lbTime;
+        private System.Windows.Forms.Label lbAngle;
+        private System.Windows.Forms.Label lbDistance;
+        private System.Windows.Forms.TextBox tbTime;
+        private System.Windows.Forms.TextBox tbAngle;
+        private System.Windows.Forms.TextBox tbDistance;
+        private System.Windows.Forms.Label lbURL;
+        private System.Windows.Forms.TextBox tbURL;
+        private System.Windows.Forms.CheckBox CBHeader;
+        private System.Windows.Forms.Button btCalc1;
+        private System.Windows.Forms.Button btCalc2;
+        private System.Windows.Forms.Button btCalcAll;
     }
 }
 

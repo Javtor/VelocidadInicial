@@ -80,6 +80,11 @@ namespace Velocidad_Inicial.model
             }
         }
 
+        internal string AverageVo()
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteRegister(int index)
         {
             registers.RemoveAt(index);

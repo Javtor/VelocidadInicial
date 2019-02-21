@@ -13,7 +13,7 @@ namespace Velocidad_Inicial
 {
     public partial class Form1 : Form
     {
-
+        
         private Analysis analysis;
 
         public Form1()
@@ -37,10 +37,49 @@ namespace Velocidad_Inicial
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            analysis.ReadCsv(tbURL.Text, CBHeader.Checked);
+            LoadList();
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Addbt_Click(object sender, EventArgs e)
+        {
+            analysis.AddRegister(Convert.ToDouble(tbTime.Text), Convert.ToDouble(tbAngle.Text), Convert.ToDouble(tbDistance.Text));
+            LoadList();
+        }
+
+        private void Clearbt_Click(object sender, EventArgs e)
+        {
+            analysis.ClearRegisters();
+            LoadList();
+        }
+
+        private void Deletebt_Click(object sender, EventArgs e)
+        {
+            Form2 check = new Form2(this);
+            check.ShowDialog();
+        }
+        public void delete(int index)
+        {
+            analysis.DeleteRegister(index-1);
+            LoadList();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btCalc2_Click(object sender, EventArgs e)
         {
 
         }
