@@ -113,6 +113,7 @@ namespace Velocidad_Inicial.model
 
         public double AverageVo(int method)
         {
+            if (registers.Count == 0) return 0;
             double distance = CalculateAverage(DISTANCE);
             double time = CalculateAverage(TIME);
             double angle = CalculateAverage(ANGLE);
@@ -132,6 +133,7 @@ namespace Velocidad_Inicial.model
 
         public double CalculateAverageUncertainty(int method)
         {
+            if (registers.Count == 0) return 0;
             double g = Register.GRAVITY;
             double distance = CalculateAverage(DISTANCE);
             double time = CalculateAverage(TIME);
@@ -173,7 +175,7 @@ namespace Velocidad_Inicial.model
                         break;
                 }
             }
-            return sum / size;
+            return size == 0 ? 0 : sum / size;
         }
 
         public double CalculateDeviation(int c)
@@ -198,7 +200,7 @@ namespace Velocidad_Inicial.model
                         break;
                 }
             }
-            return Math.Sqrt(sum / (size - 1));
+            return size <= 1 ? 0 : Math.Sqrt(sum / (size - 1));
         }
 
         public void AddRegister(double time, double angle, double distance)
@@ -210,6 +212,24 @@ namespace Velocidad_Inicial.model
         {
             double radians = degrees * Math.PI / 180;
             return (radians);
+        }
+
+        public double[] FindIntersection()
+        {
+            if (registers.Count == 0) return new double[] { 1, 0 };
+
+            double v1 = AverageVo(METHOD_1);
+            double u1 = CalculateAverageUncertainty(METHOD_1);
+            double s1 = v1 - u1;
+            double e1 = v1 + u1;
+            double v2 = AverageVo(METHOD_2);
+            double u2 = CalculateAverageUncertainty(METHOD_2);
+            double s2 = v2 - u2;
+            double e2 = v2 + u2;
+
+            double[] intersection = new double[] { Math.Max(s1, s2), Math.Min(e1, e2) };
+
+            return intersection;
         }
     }
 }
