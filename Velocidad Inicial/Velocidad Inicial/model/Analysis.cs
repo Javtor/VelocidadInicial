@@ -205,7 +205,9 @@ namespace Velocidad_Inicial.model
 
         public void AddRegister(double time, double angle, double distance)
         {
-            registers.Add(new Register(time, angle, distance));
+            Register register = new Register(time, angle, distance);
+            registers.Add(register);
+            SaveRegister(register);
         }
 
         private static double ConvertDegreesToRadians(double degrees)
