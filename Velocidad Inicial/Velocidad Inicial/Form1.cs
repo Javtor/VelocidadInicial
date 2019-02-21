@@ -49,6 +49,7 @@ namespace Velocidad_Inicial
         private void Addbt_Click(object sender, EventArgs e)
         {
             analysis.AddRegister(Convert.ToDouble(tbTime.Text), Convert.ToDouble(tbAngle.Text), Convert.ToDouble(tbDistance.Text));
+            tbTime.Clear();tbAngle.Clear();tbDistance.Clear();
             LoadList();
         }
 
@@ -71,17 +72,42 @@ namespace Velocidad_Inicial
 
         private void button3_Click(object sender, EventArgs e)
         {
-           
+            
+            MessageBox.Show("V1 promedio es:" + analysis.AverageVo(1) + " y la incertidumbre es +/-" + analysis.CalculateAverageUncertainty(1) +
+    ". Y V2 es: " + analysis.AverageVo(2) + " y la incertidumbre es +/-" + analysis.CalculateAverageUncertainty(2));
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-
+            MessageBox.Show("V1 promedio es:" + analysis.AverageVo(1));
         }
 
         private void btCalc2_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("V2 promedio es:" + analysis.AverageVo(2));
+        }
 
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            Double[] intersection = analysis.FindIntersection();
+            String inter = "";
+            for(int i = 0; i < intersection.Length && intersection!=null; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    inter += intersection[i] +",";
+                }
+                else
+                {
+                    inter += intersection[i];
+                }
+            }
+            MessageBox.Show("El intervalo de interseccon es de :[" + inter + "]");
         }
     }
 }
