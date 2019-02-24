@@ -33,6 +33,9 @@ namespace Velocidad_Inicial
                 lvi.SubItems.Add(register.Distance + "");
                 regListView.Items.Add(lvi);
             }
+            avDistLabel.Text = ""+analysis.CalculateAverage(Analysis.DISTANCE);
+            avAngLabel.Text = "" + analysis.CalculateAverage(Analysis.ANGLE);
+            avTimeLabel.Text = "" + analysis.CalculateAverage(Analysis.TIME);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -96,18 +99,45 @@ namespace Velocidad_Inicial
         {
             Double[] intersection = analysis.FindIntersection();
             String inter = "";
+         
             for(int i = 0; i < intersection.Length && intersection!=null; i++)
             {
                 if (i % 2 == 0)
                 {
-                    inter += intersection[i] +",";
+                    inter += intersection[i] +" - ";
                 }
                 else
                 {
                     inter += intersection[i];
                 }
             }
-            MessageBox.Show("El intervalo de interseccon es de :[" + inter + "]");
+            string message = "No hay interseccion entre los dos intervalos";
+            if (intersection[0] <= intersection[1]) message = "El intervalo de interseccon es de :[" + inter + "]";
+            MessageBox.Show(message);
+        }
+
+        private void tbURL_TextChanged(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog
+            {
+                Title = "Buscar Csv",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                DefaultExt = "csv",
+                Filter = "csv files (*.csv)|*.csv",
+                FilterIndex = 2,
+                RestoreDirectory = true,
+
+                ReadOnlyChecked = true,
+                ShowReadOnly = true
+            };
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                tbURL.Text = openFileDialog1.FileName;
+            }
         }
     }
 }

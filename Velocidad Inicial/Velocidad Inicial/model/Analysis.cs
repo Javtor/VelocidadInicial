@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,7 @@ namespace Velocidad_Inicial.model
         public Analysis()
         {
             registers = new List<Register>();
-            ClearRegisters();
+            ReadCsv(REGISTERS_LOCATION, false);
         }
 
         public void ReadCsv(string url, bool hasHeader)
@@ -43,9 +44,9 @@ namespace Velocidad_Inicial.model
                 while ((line = sr.ReadLine()) != null)
                 {
                     string[] info = line.Split(',');
-                    double time = Double.Parse(info[0]);
-                    double angle = Double.Parse(info[1]);
-                    double distance = Double.Parse(info[2]);
+                    double time = Double.Parse(info[0], CultureInfo.InvariantCulture);
+                    double angle = Double.Parse(info[1], CultureInfo.InvariantCulture);
+                    double distance = Double.Parse(info[2], CultureInfo.InvariantCulture);
                     AddRegister(time, angle, distance);
                 }
 
@@ -148,12 +149,13 @@ namespace Velocidad_Inicial.model
             switch (method)
             {
                 case METHOD_1:
-                    uncertainty = (g / (2 * Math.Sin(angle))) * CalculateDeviation(TIME)
-                        + (-(g * time * Math.Cos(angle)) / (2 * Math.Pow(Math.Sin(2 * angle), 2))) * CalculateDeviation(ANGLE);
+                    double u1 = Math.Abs(g / (2 * Math.Sin(angle))) * CalculateDeviation(TIME);
+                    double u2 = Math.Abs(-(g * time * Math.Cos(angle)) / (2 * Math.Pow(Math.Sin(2 * angle), 2))) * CalculateDeviation(ANGLE);
+                    uncertainty = u1 + u2; 
                     break;
                 case METHOD_2:
-                    uncertainty = (1 / 2 * Math.Sqrt(g / (distance * Math.Sin(angle)))) * CalculateDeviation(DISTANCE)
-                        + (-(Math.Sqrt(g * distance) * Math.Cos(2 * angle)) / Math.Sqrt(Math.Pow(Math.Sin(2 * angle), 3))) * CalculateDeviation(ANGLE);
+                    uncertainty = Math.Abs(1 / 2 * Math.Sqrt(g / (distance * Math.Sin(angle)))) * CalculateDeviation(DISTANCE)
+                        + Math.Abs(-(Math.Sqrt(g * distance) * Math.Cos(2 * angle)) / Math.Sqrt(Math.Pow(Math.Sin(2 * angle), 3))) * CalculateDeviation(ANGLE);
                     break;
             }
             return uncertainty;

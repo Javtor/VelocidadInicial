@@ -250,6 +250,8 @@
             this.tbURL.Name = "tbURL";
             this.tbURL.Size = new System.Drawing.Size(164, 20);
             this.tbURL.TabIndex = 18;
+            this.tbURL.Click += new System.EventHandler(this.tbURL_TextChanged);
+            this.tbURL.TextChanged += new System.EventHandler(this.tbURL_TextChanged);
             // 
             // CBHeader
             // 
