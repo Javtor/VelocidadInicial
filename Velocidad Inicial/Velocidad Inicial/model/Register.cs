@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,7 +40,9 @@ namespace Velocidad_Inicial.model
 
         public string GetCsvString()
         {
-            return Time + "," + Angle + "," + Distance;
+            return Time.ToString("0.000", CultureInfo.InvariantCulture) + "," +
+                Angle.ToString("0.000", CultureInfo.InvariantCulture) + "," +
+                Distance.ToString("0.000", CultureInfo.InvariantCulture);
         }
-    }   
+    }
 }

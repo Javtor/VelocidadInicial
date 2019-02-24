@@ -20,6 +20,7 @@ namespace Velocidad_Inicial
         {
             InitializeComponent();
             analysis = new Analysis();
+            LoadList();
         }
 
         private void LoadList()

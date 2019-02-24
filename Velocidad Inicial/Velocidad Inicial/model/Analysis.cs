@@ -27,11 +27,15 @@ namespace Velocidad_Inicial.model
         public Analysis()
         {
             registers = new List<Register>();
-            ReadCsv(REGISTERS_LOCATION, false);
+            ReadCsv(REGISTERS_LOCATION, false);        
         }
 
         public void ReadCsv(string url, bool hasHeader)
         {
+            if(!File.Exists(url))
+            {
+                return;
+            }
             String line;
             try
             {
@@ -151,7 +155,7 @@ namespace Velocidad_Inicial.model
                 case METHOD_1:
                     double u1 = Math.Abs(g / (2 * Math.Sin(angle))) * CalculateDeviation(TIME);
                     double u2 = Math.Abs(-(g * time * Math.Cos(angle)) / (2 * Math.Pow(Math.Sin(2 * angle), 2))) * CalculateDeviation(ANGLE);
-                    uncertainty = u1 + u2; 
+                    uncertainty = u1 + u2;
                     break;
                 case METHOD_2:
                     uncertainty = Math.Abs(1 / 2 * Math.Sqrt(g / (distance * Math.Sin(angle)))) * CalculateDeviation(DISTANCE)
