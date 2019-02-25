@@ -51,13 +51,15 @@
             this.lbURL = new System.Windows.Forms.Label();
             this.tbURL = new System.Windows.Forms.TextBox();
             this.CBHeader = new System.Windows.Forms.CheckBox();
-            this.btCalc1 = new System.Windows.Forms.Button();
-            this.btCalc2 = new System.Windows.Forms.Button();
-            this.btCalcAll = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.V1Label = new System.Windows.Forms.Label();
+            this.V2Label = new System.Windows.Forms.Label();
+            this.IntersectionLabel = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -263,36 +265,6 @@
             this.CBHeader.Text = "Con Encabezado";
             this.CBHeader.UseVisualStyleBackColor = true;
             // 
-            // btCalc1
-            // 
-            this.btCalc1.Location = new System.Drawing.Point(15, 19);
-            this.btCalc1.Name = "btCalc1";
-            this.btCalc1.Size = new System.Drawing.Size(75, 23);
-            this.btCalc1.TabIndex = 20;
-            this.btCalc1.Text = "Calcular V1";
-            this.btCalc1.UseVisualStyleBackColor = true;
-            this.btCalc1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // btCalc2
-            // 
-            this.btCalc2.Location = new System.Drawing.Point(15, 58);
-            this.btCalc2.Name = "btCalc2";
-            this.btCalc2.Size = new System.Drawing.Size(75, 23);
-            this.btCalc2.TabIndex = 21;
-            this.btCalc2.Text = "Calcular V2";
-            this.btCalc2.UseVisualStyleBackColor = true;
-            this.btCalc2.Click += new System.EventHandler(this.btCalc2_Click);
-            // 
-            // btCalcAll
-            // 
-            this.btCalcAll.Location = new System.Drawing.Point(134, 19);
-            this.btCalcAll.Name = "btCalcAll";
-            this.btCalcAll.Size = new System.Drawing.Size(120, 23);
-            this.btCalcAll.TabIndex = 22;
-            this.btCalcAll.Text = "Calcular Ambas";
-            this.btCalcAll.UseVisualStyleBackColor = true;
-            this.btCalcAll.Click += new System.EventHandler(this.button3_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Location = new System.Drawing.Point(478, 13);
@@ -308,33 +280,81 @@
             this.groupBox2.Controls.Add(this.tbURL);
             this.groupBox2.Location = new System.Drawing.Point(478, 189);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(278, 133);
+            this.groupBox2.Size = new System.Drawing.Size(278, 123);
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Manejo de Lista";
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.btCalcAll);
-            this.groupBox3.Controls.Add(this.btCalc1);
-            this.groupBox3.Controls.Add(this.btCalc2);
-            this.groupBox3.Location = new System.Drawing.Point(478, 329);
+            this.groupBox3.Controls.Add(this.IntersectionLabel);
+            this.groupBox3.Controls.Add(this.V2Label);
+            this.groupBox3.Controls.Add(this.V1Label);
+            this.groupBox3.Controls.Add(this.label6);
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Location = new System.Drawing.Point(478, 318);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(278, 100);
+            this.groupBox3.Size = new System.Drawing.Size(278, 120);
             this.groupBox3.TabIndex = 25;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Calculos";
             // 
-            // button1
+            // label4
             // 
-            this.button1.Location = new System.Drawing.Point(134, 58);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 23);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "Calcular Interseccion";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Velocidad 1:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(66, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Velocidad 2:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 64);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Intersección:";
+            // 
+            // V1Label
+            // 
+            this.V1Label.AutoSize = true;
+            this.V1Label.Location = new System.Drawing.Point(81, 20);
+            this.V1Label.Name = "V1Label";
+            this.V1Label.Size = new System.Drawing.Size(35, 13);
+            this.V1Label.TabIndex = 3;
+            this.V1Label.Text = "label7";
+            this.V1Label.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // V2Label
+            // 
+            this.V2Label.AutoSize = true;
+            this.V2Label.Location = new System.Drawing.Point(81, 42);
+            this.V2Label.Name = "V2Label";
+            this.V2Label.Size = new System.Drawing.Size(35, 13);
+            this.V2Label.TabIndex = 4;
+            this.V2Label.Text = "label8";
+            // 
+            // IntersectionLabel
+            // 
+            this.IntersectionLabel.AutoSize = true;
+            this.IntersectionLabel.Location = new System.Drawing.Point(81, 64);
+            this.IntersectionLabel.Name = "IntersectionLabel";
+            this.IntersectionLabel.Size = new System.Drawing.Size(35, 13);
+            this.IntersectionLabel.TabIndex = 5;
+            this.IntersectionLabel.Text = "label9";
             // 
             // Form1
             // 
@@ -368,6 +388,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -398,13 +419,15 @@
         private System.Windows.Forms.Label lbURL;
         private System.Windows.Forms.TextBox tbURL;
         private System.Windows.Forms.CheckBox CBHeader;
-        private System.Windows.Forms.Button btCalc1;
-        private System.Windows.Forms.Button btCalc2;
-        private System.Windows.Forms.Button btCalcAll;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label V1Label;
+        private System.Windows.Forms.Label IntersectionLabel;
+        private System.Windows.Forms.Label V2Label;
     }
 }
 
