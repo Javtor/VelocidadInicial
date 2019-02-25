@@ -203,7 +203,7 @@ namespace Velocidad_Inicial.model
                         break;
 
                     case ANGLE:
-                        sum += Math.Pow(r.Angle - average, 2);
+                        sum += Math.Pow(ConvertDegreesToRadians(r.Angle) - ConvertDegreesToRadians(average), 2);
                         break;
 
                     case DISTANCE:

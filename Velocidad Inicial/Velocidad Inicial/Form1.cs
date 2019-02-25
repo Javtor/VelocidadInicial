@@ -13,7 +13,7 @@ namespace Velocidad_Inicial
 {
     public partial class Form1 : Form
     {
-        
+
         private Analysis analysis;
 
         public Form1()
@@ -27,14 +27,14 @@ namespace Velocidad_Inicial
         {
             List<Register> registers = analysis.registers;
             regListView.Items.Clear();
-            foreach(Register register in registers)
+            foreach (Register register in registers)
             {
-                ListViewItem lvi = new ListViewItem(register.Time+"");
+                ListViewItem lvi = new ListViewItem(register.Time + "");
                 lvi.SubItems.Add(register.Angle + "");
                 lvi.SubItems.Add(register.Distance + "");
                 regListView.Items.Add(lvi);
             }
-            avDistLabel.Text = ""+analysis.CalculateAverage(Analysis.DISTANCE);
+            avDistLabel.Text = "" + analysis.CalculateAverage(Analysis.DISTANCE);
             avAngLabel.Text = "" + analysis.CalculateAverage(Analysis.ANGLE);
             avTimeLabel.Text = "" + analysis.CalculateAverage(Analysis.TIME);
         }
@@ -53,7 +53,7 @@ namespace Velocidad_Inicial
         private void Addbt_Click(object sender, EventArgs e)
         {
             analysis.AddRegister(Convert.ToDouble(tbTime.Text), Convert.ToDouble(tbAngle.Text), Convert.ToDouble(tbDistance.Text));
-            tbTime.Clear();tbAngle.Clear();tbDistance.Clear();
+            tbTime.Clear(); tbAngle.Clear(); tbDistance.Clear();
             LoadList();
         }
 
@@ -70,13 +70,13 @@ namespace Velocidad_Inicial
         }
         public void delete(int index)
         {
-            analysis.DeleteRegister(index-1);
+            analysis.DeleteRegister(index - 1);
             LoadList();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+
             MessageBox.Show("V1 promedio es:" + analysis.AverageVo(1) + " y la incertidumbre es +/-" + analysis.CalculateAverageUncertainty(1) +
     ". Y V2 es: " + analysis.AverageVo(2) + " y la incertidumbre es +/-" + analysis.CalculateAverageUncertainty(2));
         }
@@ -100,12 +100,12 @@ namespace Velocidad_Inicial
         {
             Double[] intersection = analysis.FindIntersection();
             String inter = "";
-         
-            for(int i = 0; i < intersection.Length && intersection!=null; i++)
+
+            for (int i = 0; i < intersection.Length && intersection != null; i++)
             {
                 if (i % 2 == 0)
                 {
-                    inter += intersection[i] +" - ";
+                    inter += intersection[i] + " - ";
                 }
                 else
                 {
@@ -135,7 +135,8 @@ namespace Velocidad_Inicial
                 ShowReadOnly = true
             };
 
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            dynamic result = openFileDialog1.ShowDialog();
+            if (result == DialogResult.OK)
             {
                 tbURL.Text = openFileDialog1.FileName;
             }
