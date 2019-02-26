@@ -158,7 +158,7 @@ namespace Velocidad_Inicial.model
                     uncertainty = u1 + u2;
                     break;
                 case METHOD_2:
-                    uncertainty = Math.Abs(1 / 2 * Math.Sqrt(g / (distance * Math.Sin(angle)))) * CalculateDeviation(DISTANCE)
+                    uncertainty = Math.Abs(1 / 2 * Math.Sqrt(g / (distance * Math.Sin(2*angle)))) * CalculateDeviation(DISTANCE)
                         + Math.Abs(-(Math.Sqrt(g * distance) * Math.Cos(2 * angle)) / Math.Sqrt(Math.Pow(Math.Sin(2 * angle), 3))) * CalculateDeviation(ANGLE);
                     break;
             }
